@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Category;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Item>
@@ -20,11 +21,11 @@ class ItemFactory extends Factory
             'codeNo' =>$this->faker->ean8,
             'name'=>$this->faker->word,
             'description'=>$this->faker->paragraph,
-            'price'=>$this->faker->numbrBetween(10000,1000000),
+            'price'=>$this->faker->numberBetween(10000,1000000),
             'image'=>$this->faker->imageUrl,
             'instock'=>rand(0,1),
             'discount'=>rand(0,1000),
-            'category_id'=>rand(1,10)
+            'category_id' =>Category::inRandomOrder()->first()->id
         ];
     }
 }
